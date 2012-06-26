@@ -1,0 +1,6 @@
+name: bShortLinks
+main: uk.codingbadgers.bShortLinks.bShortLinks
+version: 1.10
+authors: [n3wton, thefish97]
+description: Shortens url link when entered into the MineCraft chat.
+softdepend: [Vault]
