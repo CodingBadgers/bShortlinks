@@ -16,10 +16,13 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
+import uk.codingbadgers.bFundamentals.module.Module;
+
 public class Global {
 	
 	static public Plugin plugin = null;
 	static public Permission permission = null;
+	static public Module module = null;
 	
 	//! Configuration members
 	static public String API = "adfly";
@@ -36,7 +39,7 @@ public class Global {
 	 * @param msg the message to output
 	 */
 	static public void OutputConsole(String msg) {
-		plugin.getLogger().log(Level.INFO, msg);
+		module.log(Level.INFO, msg);
 	}
 		
 	/**
@@ -69,7 +72,7 @@ public class Global {
 	 */
 	public static void LoadConfig() {
 		
-		FileConfiguration config = plugin.getConfig();
+		FileConfiguration config = module.getConfig();
 		
 		try {
 			config.addDefault("shorten_api", "adfly");
@@ -90,10 +93,10 @@ public class Global {
 		UrlColour = ChatColor.getByChar(config.getString("url_colour"));
 		DEBUG = config.getBoolean("debug");
 		
-		plugin.saveConfig();
+		module.saveConfig();
 		
 		// create and load the black list
-		File blackList = new File(plugin.getDataFolder() + File.separator + "blacklist.cfg");
+		File blackList = new File(module.getDataFolder() + File.separator + "blacklist.cfg");
 		
 		if (!blackList.exists()) {
 			try {
