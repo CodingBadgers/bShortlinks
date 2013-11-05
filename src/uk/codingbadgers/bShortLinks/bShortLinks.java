@@ -3,23 +3,18 @@ package uk.codingbadgers.bShortLinks;
 import net.milkbowl.vault.permission.Permission;
 
 import org.bukkit.plugin.RegisteredServiceProvider;
-import uk.codingbadgers.bFundamentals.module.Module;
+import org.bukkit.plugin.java.JavaPlugin;
 
-public class bShortLinks extends Module {
+public class bShortLinks extends JavaPlugin {
 	
-	public bShortLinks() {
-		super("bShortLinks", "1.0");
-	}
-
 	private PlayerListener m_playerListener = new PlayerListener();
 	
 	public void onEnable() {
 		
-		Global.plugin = plugin;
-		Global.module = this;
-		register(m_playerListener);
+		Global.plugin = this;
+		this.getServer().getPluginManager().registerEvents(m_playerListener, this);
 		
-		RegisteredServiceProvider<Permission> permissionProvider = plugin.getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class);
+		RegisteredServiceProvider<Permission> permissionProvider = this.getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class);
         if (permissionProvider != null) {
         	Global.permission = permissionProvider.getProvider();
         }
