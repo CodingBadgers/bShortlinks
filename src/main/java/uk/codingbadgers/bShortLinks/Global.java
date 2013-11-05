@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
-import net.milkbowl.vault.permission.Permission;
-
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -19,7 +17,6 @@ import org.bukkit.plugin.Plugin;
 public class Global {
 	
 	static public Plugin plugin = null;
-	static public Permission permission = null;
 	
 	//! Configuration members
 	static public String API = "adfly";
@@ -49,10 +46,6 @@ public class Global {
 	static public boolean HasPermission(Player player, String node) {
 				
 		// If they have vault, check with that
-		if (permission != null && permission.has(player, node))
-			return true;
-		
-		// try bukkit perms...
 		if (player.hasPermission(node))
 			return true;
 		
